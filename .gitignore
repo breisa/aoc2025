@@ -40,3 +40,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# ignore puzzle inputs according to the rules
+src/main/resources/puzzles
