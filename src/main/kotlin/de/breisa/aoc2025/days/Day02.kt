@@ -35,8 +35,7 @@ class Day02: Day<List<LongRange>, Long> {
 }
 
 fun main() {
-    val day = Day02()
-    day.solve(
+    Day02().solve(
         exampleInput = EXAMPLE,
         puzzleInput = getResourceAsText("/puzzles/02/input.txt")
     )
