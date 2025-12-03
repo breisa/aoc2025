@@ -13,6 +13,11 @@ private const val EXAMPLE = "11-22,95-115,998-1012,1188511880-1188511890,222220-
     https://adventofcode.com/2025/day/2
  */
 class Day02: Day<List<LongRange>, Long> {
+    companion object {
+        private val FIRST_ID_REGEX = Regex("(\\d+)\\1")
+        private val SECOND_ID_REGEX = Regex("(\\d+)\\1+")
+    }
+
     override fun solveFirstPart(input: List<LongRange>): Long = input
         .flatMap { range ->
             range.filter(::isInvalidFirstId)
@@ -29,9 +34,9 @@ class Day02: Day<List<LongRange>, Long> {
         .map { it.toLong() }
         .chunked(2) { it[0]..it[1] }
 
-    private fun isInvalidFirstId(id: Long): Boolean = Regex("(\\d+)\\1").matches(id.toString())
+    private fun isInvalidFirstId(id: Long): Boolean = FIRST_ID_REGEX.matches(id.toString())
 
-    private fun isInvalidSecondId(id: Long): Boolean = Regex("(\\d+)\\1+").matches(id.toString())
+    private fun isInvalidSecondId(id: Long): Boolean = SECOND_ID_REGEX.matches(id.toString())
 }
 
 fun main() {
