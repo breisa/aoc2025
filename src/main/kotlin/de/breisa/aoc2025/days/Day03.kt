@@ -9,6 +9,9 @@ private val EXAMPLE = """
     818181911112111
 """.trimIndent()
 
+/*
+    https://adventofcode.com/2025/day/3
+ */
 class Day03: Day<List<List<Long>>, Long> {
     override fun solveFirstPart(input: List<List<Long>>): Long {
         return input.sumOf { bank ->
