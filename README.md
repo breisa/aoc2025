@@ -5,6 +5,7 @@ I implemented them in Kotlin.
 Solutions:
 [01](https://github.com/breisa/aoc2025/blob/main/src/main/kotlin/de/breisa/aoc2025/days/Day01.kt)
 [02](https://github.com/breisa/aoc2025/blob/main/src/main/kotlin/de/breisa/aoc2025/days/Day02.kt)
+[03](https://github.com/breisa/aoc2025/blob/main/src/main/kotlin/de/breisa/aoc2025/days/Day03.kt)
 
 ```
 .      .           \|/ .                   .                    .        .
