@@ -26,30 +26,36 @@ interface Day<I, O> {
         val (secondActualSolution, secondDuration) = measureTimedValue { solveSecondPart(puzzle) }
         println("  solution of the actual puzzle: $secondActualSolution ($secondDuration)")
 
-        if (runBenchmark) benchmarkImplementation(puzzle)
+        if (runBenchmark) benchmarkImplementation(puzzleInput)
     }
 
-    fun benchmarkImplementation(puzzleInput: I) {
+    fun benchmarkImplementation(puzzleInput: String) {
         println("running the benchmark:")
         val firstPart = measureTimes(::solveFirstPart, puzzleInput)
         val secondPart = measureTimes(::solveSecondPart, puzzleInput)
-        println("  part 1 runtime over $BENCHMARK_RUNS runs:  " +
-                "average: ${firstPart.average()} min: ${firstPart.min()} max: ${firstPart.max()}")
-        println("  part 2 runtime over $BENCHMARK_RUNS runs:  " +
-                "average: ${secondPart.average()} min: ${secondPart.min()} max: ${secondPart.max()}")
+        println(
+            "  part 1 runtime over $BENCHMARK_RUNS runs:  " +
+                    "average: ${firstPart.average()} min: ${firstPart.min()} max: ${firstPart.max()}"
+        )
+        println(
+            "  part 2 runtime over $BENCHMARK_RUNS runs:  " +
+                    "average: ${secondPart.average()} min: ${secondPart.min()} max: ${secondPart.max()}"
+        )
     }
 
-    private fun measureTimes(part: (I)->O, input: I): List<Duration> {
+    private fun measureTimes(part: (I) -> O, puzzleInput: String): List<Duration> {
         print("  warming up")
         repeat(WARMUP_RUNS) {
-            part(input)
+            val puzzle = parseInput(puzzleInput)
+            part(puzzle)
             print(".")
         }
         println()
         print("  benchmarking")
         return buildList {
             repeat(BENCHMARK_RUNS) {
-                add(measureTime { part(input) })
+                val puzzle = parseInput(puzzleInput)
+                add(measureTime { part(puzzle) })
                 print(".")
             }
             println()
